@@ -16,6 +16,7 @@ with other versions.
   * KAFKA_CA - ca.pem
   * KAFKA_SERVICE_CERT - service.cert
   * KAFKA_SERVICE_KEY - service.key
+  * POSTGRES_URI - URI for PostgreSQL database
 
 ## Installation
 
@@ -26,14 +27,25 @@ with other versions.
 
 ## Running app
 
+### Sample run
+
+<pre><code>python producer.py -t times-topic
+python consumer.py -t times-topic -g demo-group -c demo-client</code></pre>
+
 1. Run producer app first.
-Optional arguments:
+
+REQUIRED:
+
+- -t topic name : specify which topic to use
+
+OPTIONAL:
+
 - -l : log to file "consumer.log". Otherwise it will log to
 console.
 
 - -v enable verbose : by default only ERRORs will be shown
 
-<pre><code>python producer.py [-l logfile.log -v]</code></pre>
+<pre><code>python producer.py [-l -v]</code></pre>
 
 2. Run consumer app
 
@@ -51,6 +63,4 @@ console.
 
 - -c client_id : by default kafka-python client id is used
 
-- -a auto_offset_reset : by default latest is used
-
-<pre><code>python consumer.py topic_name [-l logfile.log -v -g groupid -c clientid -a auto_offset_reset]</code></pre>
+<pre><code>python consumer.py topic_name -g groupid -c clientid [-l -v]</code></pre>
