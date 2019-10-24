@@ -25,6 +25,11 @@ with other versions.
 
 2. Create table schema in your PostgreSQL database
 
+OPTIONAL (Sample data is supplied in accounts.json file)
+
+3. You may generate new data to send to consumer app
+<pre><code>python generate_data.py</code></pre>
+
 ## Running app
 
 ### Sample run
