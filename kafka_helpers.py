@@ -1,5 +1,6 @@
 from kafka import KafkaProducer, KafkaConsumer
 import os
+from json import dumps, loads
 
 """
 Adapted from Heroku Kafka Helpers
@@ -61,7 +62,10 @@ def get_kafka_producer():
     return producer
 
 
-def get_kafka_consumer(topic=None):
+def get_kafka_consumer(topic=None,
+                       group_id=None,
+                       client_id="kafka-python",
+                       auto_offset_reset="latest"):
     """
     Return a KafkaConsumer that uses the configured Kafka broker and corresponding SSL info
     """
@@ -70,6 +74,9 @@ def get_kafka_consumer(topic=None):
     consumer = KafkaConsumer(
         topic,
         bootstrap_servers=get_kafka_broker(),
+        client_id=client_id,
+        group_id=group_id,
+        auto_offset_reset=auto_offset_reset,
         security_protocol='SSL',
         ssl_cafile=ssl_info["ssl_cafile"],
         ssl_certfile=ssl_info["ssl_certfile"],
