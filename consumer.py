@@ -23,16 +23,17 @@ def run_consumer(logger, topic_name):
 
     # get kafka consumer to receive messages
     consumer = kafka_helpers.get_kafka_consumer(topic_name)
-
+    logger.debug("Created Kafka consumer")
     data = []
+
     # poll for the messages and store them in a list
     for _ in range(2):
-        raw_msgs = consumer.poll(timeout_ms=1000)
+        raw_msgs = consumer.poll(timeout_ms=5000)
         for tp, msgs in raw_msgs.items():
             for msg in msgs:
                 logger.debug("Received: {}".format(msg.value))
                 data.append(msg.value)
-
+    logger.info(f"Received {len(data)} messages")
     # if any messages received, then insert into database
     if(len(data) > 0):
         try:
@@ -49,12 +50,6 @@ def run_consumer(logger, topic_name):
                 f"Error while inserting into PG database: {error}")
         finally:
             pg_conn.close()
-
-    # while True:
-    #     raw_msgs = consumer.poll(timeout_ms=1000)
-    #     for tp, msgs in raw_msgs.items():
-    #         for msg in msgs:
-    #             logger.debug(f"Received: {msg.value}")
 
     consumer.commit()
 
