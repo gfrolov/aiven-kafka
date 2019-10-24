@@ -8,6 +8,10 @@ import logging.config
 from kafka.errors import KafkaError
 
 
+def usage():
+    print("Usage: python producer.py [-l -v]")
+
+
 def run_producer(logger):
 
     try:
