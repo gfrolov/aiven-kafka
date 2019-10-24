@@ -3,6 +3,7 @@ import logging.config
 
 
 def create_logger(file_name, log_level):
+    """Helper function to create a logger for file and console """
 
     logging.config.dictConfig(
         {"version": 1, 'disable_existing_loggers': True})
