@@ -63,9 +63,9 @@ def get_kafka_producer():
 
 
 def get_kafka_consumer(topic=None,
-                       group_id=None,
+                       group_id="demo-group",
                        client_id="kafka-python",
-                       auto_offset_reset="latest"):
+                       auto_offset_reset="earliest"):
     """
     Return a KafkaConsumer that uses the configured Kafka broker and corresponding SSL info
     """
