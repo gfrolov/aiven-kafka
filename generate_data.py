@@ -18,7 +18,7 @@ with open("accounts.json", "w") as accounts_file:
     json_file = json
     data = []
     # create a 1000 random objects with names, email and height
-    for i in range(1000):
+    for i in range(200):
         datum = {}
         datum["first_name"] = random.choice(NAMES)
         datum["last_name"] = random.choice(LAST_NAMES)
