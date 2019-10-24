@@ -68,4 +68,8 @@ console.
 
 - -c client_id : by default kafka-python client id is used
 
-<pre><code>python consumer.py topic_name -g groupid -c clientid [-l -v]</code></pre>
+<pre><code>python consumer.py -t topic_name -g groupid -c clientid [-l -v]</code></pre>
+
+## Todo
+
+- Add additional testing for database side
